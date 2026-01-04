@@ -30,7 +30,7 @@ project Nerdsafe_TUI is
    end Linker;
 
    package Builder is
-      for Executable ("main.adb") use "nerdsafe-tui";
+      for Executable ("main.adb") use "nerdsafe-restart";
    end Builder;
 
 end Nerdsafe_TUI;

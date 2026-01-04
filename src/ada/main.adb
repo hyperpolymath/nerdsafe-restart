@@ -30,16 +30,16 @@ begin
          Arg : constant String := Argument (1);
       begin
          if Arg = "--help" or Arg = "-h" then
-            Put_Line ("nerdsafe-tui - Pre-reboot Shell Validator");
+            Put_Line ("nerdsafe-restart - Pre-reboot Shell Validator");
             Put_Line ("");
             Put_Line ("Usage:");
-            Put_Line ("  nerdsafe-tui              Interactive TUI");
-            Put_Line ("  nerdsafe-tui --detect     Show resources");
-            Put_Line ("  nerdsafe-tui --quick      Quick validation");
-            Put_Line ("  nerdsafe-tui --standard   Standard validation");
-            Put_Line ("  nerdsafe-tui --thorough   Thorough validation");
-            Put_Line ("  nerdsafe-tui --paranoid   Paranoid validation");
-            Put_Line ("  nerdsafe-tui --version    Show version");
+            Put_Line ("  nerdsafe-restart              Interactive TUI");
+            Put_Line ("  nerdsafe-restart --detect     Show resources");
+            Put_Line ("  nerdsafe-restart --quick      Quick validation");
+            Put_Line ("  nerdsafe-restart --standard   Standard validation");
+            Put_Line ("  nerdsafe-restart --thorough   Thorough validation");
+            Put_Line ("  nerdsafe-restart --paranoid   Paranoid validation");
+            Put_Line ("  nerdsafe-restart --version    Show version");
             Put_Line ("");
             Put_Line ("Exit codes:");
             Put_Line ("  0  - All validations passed");
@@ -52,7 +52,7 @@ begin
             Put_Line ("  11 - Resource detection failed");
 
          elsif Arg = "--version" or Arg = "-v" then
-            Put_Line ("nerdsafe-tui version 0.1.0");
+            Put_Line ("nerdsafe-restart version 0.1.0");
             Put_Line ("License: AGPL-3.0-or-later");
 
          elsif Arg = "--detect" then
