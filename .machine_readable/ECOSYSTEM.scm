@@ -14,6 +14,13 @@
   (uniqueness "Only tool focused specifically on shell startup emulation"))
 
  (related-projects
+  (parent-system
+   (ambientops-observatory
+    (relationship "satellite-of")
+    (description "AmbientOps observability dashboard")
+    (integration "nerdsafe-restart provides pre-boot validation for ops")
+    (repo "hyperpolymath/ambientops-observatory")))
+
   (sibling-standard
    (modshells
     (relationship "validation-target")
