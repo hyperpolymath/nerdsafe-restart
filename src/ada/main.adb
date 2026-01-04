@@ -1,17 +1,16 @@
--- SPDX-License-Identifier: AGPL-3.0-or-later
--- main.adb - Entry point for nerdsafe-restart TUI
+--  SPDX-License-Identifier: AGPL-3.0-or-later
+--  main.adb - Entry point for nerdsafe-restart TUI
 --
--- Usage:
---   nerdsafe-tui              Run interactive TUI
---   nerdsafe-tui --detect     Show detected resources and exit
---   nerdsafe-tui --quick      Run quick validation and exit
---   nerdsafe-tui --standard   Run standard validation and exit
---   nerdsafe-tui --thorough   Run thorough validation and exit
---   nerdsafe-tui --paranoid   Run paranoid validation and exit
+--  Usage:
+--    nerdsafe-tui              Run interactive TUI
+--    nerdsafe-tui --detect     Show detected resources and exit
+--    nerdsafe-tui --quick      Run quick validation and exit
+--    nerdsafe-tui --standard   Run standard validation and exit
+--    nerdsafe-tui --thorough   Run thorough validation and exit
+--    nerdsafe-tui --paranoid   Run paranoid validation and exit
 
 with Ada.Text_IO;         use Ada.Text_IO;
 with Ada.Command_Line;    use Ada.Command_Line;
-with Ada.Strings.Fixed;   use Ada.Strings.Fixed;
 with Nerdsafe_TUI;        use Nerdsafe_TUI;
 
 procedure Main is
@@ -31,15 +30,15 @@ begin
          Arg : constant String := Argument (1);
       begin
          if Arg = "--help" or Arg = "-h" then
-            Put_Line ("nerdsafe-tui - Pre-reboot Shell Configuration Validator");
+            Put_Line ("nerdsafe-tui - Pre-reboot Shell Validator");
             Put_Line ("");
             Put_Line ("Usage:");
-            Put_Line ("  nerdsafe-tui              Run interactive TUI");
-            Put_Line ("  nerdsafe-tui --detect     Show detected resources");
-            Put_Line ("  nerdsafe-tui --quick      Run quick validation");
-            Put_Line ("  nerdsafe-tui --standard   Run standard validation");
-            Put_Line ("  nerdsafe-tui --thorough   Run thorough validation");
-            Put_Line ("  nerdsafe-tui --paranoid   Run paranoid validation");
+            Put_Line ("  nerdsafe-tui              Interactive TUI");
+            Put_Line ("  nerdsafe-tui --detect     Show resources");
+            Put_Line ("  nerdsafe-tui --quick      Quick validation");
+            Put_Line ("  nerdsafe-tui --standard   Standard validation");
+            Put_Line ("  nerdsafe-tui --thorough   Thorough validation");
+            Put_Line ("  nerdsafe-tui --paranoid   Paranoid validation");
             Put_Line ("  nerdsafe-tui --version    Show version");
             Put_Line ("");
             Put_Line ("Exit codes:");
@@ -58,16 +57,30 @@ begin
 
          elsif Arg = "--detect" then
             Put_Line ("System Resources Detected:");
-            Put_Line ("  Total Memory:     " & Format_Memory (Get_Total_Memory_KB));
-            Put_Line ("  Available Memory: " & Format_Memory (Get_Available_Memory_KB));
-            Put_Line ("  CPU Count:        " & Positive'Image (Get_CPU_Count));
-            Put_Line ("  Swap Total:       " & Format_Memory (Get_Swap_Total_KB));
+            declare
+               Total_Mem : constant String :=
+                 Format_Memory (Get_Total_Memory_KB);
+               Avail_Mem : constant String :=
+                 Format_Memory (Get_Available_Memory_KB);
+               Swap_Mem  : constant String :=
+                 Format_Memory (Get_Swap_Total_KB);
+            begin
+               Put_Line ("  Total Memory:     " & Total_Mem);
+               Put_Line ("  Available Memory: " & Avail_Mem);
+               Put_Line ("  CPU Count:       "
+                         & Positive'Image (Get_CPU_Count));
+               Put_Line ("  Swap Total:       " & Swap_Mem);
+            end;
             Put_Line ("");
             Put_Line ("Container Limits (calculated):");
-            Put_Line ("  Memory Limit:     " & Positive'Image (Limits.Memory_MB) & " MB");
-            Put_Line ("  CPU Limit:        " & Positive'Image (Limits.CPU_Count));
-            Put_Line ("  PID Limit:        " & Positive'Image (Limits.PID_Limit));
-            Put_Line ("  Timeout:          " & Positive'Image (Limits.Timeout_Sec) & "s");
+            Put_Line ("  Memory Limit:    "
+                      & Positive'Image (Limits.Memory_MB) & " MB");
+            Put_Line ("  CPU Limit:       "
+                      & Positive'Image (Limits.CPU_Count));
+            Put_Line ("  PID Limit:       "
+                      & Positive'Image (Limits.PID_Limit));
+            Put_Line ("  Timeout:         "
+                      & Positive'Image (Limits.Timeout_Sec) & "s");
             Put_Line ("");
             Put_Line ("Container Runtime: " & Get_Container_Command);
             if Is_Container_Available then
@@ -78,25 +91,25 @@ begin
 
          elsif Arg = "--quick" then
             Put_Line ("Running quick validation...");
-            Result := Run_Validation (Quick, Limits);
+            Result := Run_Validation (Validation_Level'(Quick), Limits);
             Display_Result (Result, 5.0);
             Set_Exit_Status (Exit_Code'Pos (Result));
 
          elsif Arg = "--standard" then
             Put_Line ("Running standard validation...");
-            Result := Run_Validation (Standard, Limits);
+            Result := Run_Validation (Validation_Level'(Normal), Limits);
             Display_Result (Result, 30.0);
             Set_Exit_Status (Exit_Code'Pos (Result));
 
          elsif Arg = "--thorough" then
             Put_Line ("Running thorough validation...");
-            Result := Run_Validation (Thorough, Limits);
+            Result := Run_Validation (Validation_Level'(Thorough), Limits);
             Display_Result (Result, 120.0);
             Set_Exit_Status (Exit_Code'Pos (Result));
 
          elsif Arg = "--paranoid" then
             Put_Line ("Running paranoid validation...");
-            Result := Run_Validation (Paranoid, Limits);
+            Result := Run_Validation (Validation_Level'(Paranoid), Limits);
             Display_Result (Result, 300.0);
             Set_Exit_Status (Exit_Code'Pos (Result));
 

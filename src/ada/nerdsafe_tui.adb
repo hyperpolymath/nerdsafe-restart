@@ -1,5 +1,5 @@
--- SPDX-License-Identifier: AGPL-3.0-or-later
--- nerdsafe_tui.adb - Main TUI package body
+--  SPDX-License-Identifier: AGPL-3.0-or-later
+--  nerdsafe_tui.adb - Main TUI package body
 
 with Ada.Text_IO;           use Ada.Text_IO;
 with Ada.Integer_Text_IO;   use Ada.Integer_Text_IO;
@@ -12,9 +12,9 @@ with GNAT.OS_Lib;
 
 package body Nerdsafe_TUI is
 
-   -- =========================================================================
-   -- Resource Detection Implementation
-   -- =========================================================================
+   --  =========================================================================
+   --  Resource Detection Implementation
+   --  =========================================================================
 
    function Get_Total_Memory_KB return Natural is
       File   : File_Type;
@@ -177,9 +177,9 @@ package body Nerdsafe_TUI is
       Limits.Network := False;
    end Auto_Detect_Resources;
 
-   -- =========================================================================
-   -- Profile Management Implementation
-   -- =========================================================================
+   --  =========================================================================
+   --  Profile Management Implementation
+   --  =========================================================================
 
    function Load_Profiles return Profile_List is
       Result : Profile_List;
@@ -190,7 +190,7 @@ package body Nerdsafe_TUI is
       Auto_Detect_Resources (Default_P.Limits);
       Default_P.Name := To_Unbounded_String (Default_Profile_Name);
       Default_P.Description := To_Unbounded_String ("Auto-detected system resources");
-      Default_P.Level := Standard;
+      Default_P.Level := Normal;
       Default_P.Is_Default := True;
       Result.Append (Default_P);
       return Result;
@@ -208,7 +208,7 @@ package body Nerdsafe_TUI is
       Auto_Detect_Resources (P.Limits);
       P.Name := To_Unbounded_String (Default_Profile_Name);
       P.Description := To_Unbounded_String ("Auto-detected system resources");
-      P.Level := Standard;
+      P.Level := Normal;
       P.Is_Default := True;
       return P;
    end Get_Default_Profile;
@@ -229,9 +229,9 @@ package body Nerdsafe_TUI is
       return P;
    end Create_Profile;
 
-   -- =========================================================================
-   -- Validation Execution Implementation
-   -- =========================================================================
+   --  =========================================================================
+   --  Validation Execution Implementation
+   --  =========================================================================
 
    function Build_Command
      (Level  : Validation_Level;
@@ -273,9 +273,9 @@ package body Nerdsafe_TUI is
       return Run_Validation (P.Level, P.Limits);
    end Run_Validation;
 
-   -- =========================================================================
-   -- TUI Interface Implementation
-   -- =========================================================================
+   --  =========================================================================
+   --  TUI Interface Implementation
+   --  =========================================================================
 
    procedure Display_Main_Menu is
    begin
@@ -363,7 +363,7 @@ package body Nerdsafe_TUI is
       Put ("%");
    end Display_Progress;
 
-   procedure Display_Result (Code : Exit_Code; Duration : Duration) is
+   procedure Display_Result (Code : Exit_Code; Elapsed : Duration) is
    begin
       Put_Line ("");
       Put_Line ("╔════════════════════════════════════════╗");
@@ -395,7 +395,7 @@ package body Nerdsafe_TUI is
       end case;
       Put_Line ("╠════════════════════════════════════════╣");
       Put ("║  Duration: ");
-      Ada.Float_Text_IO.Put (Float (Duration), Fore => 3, Aft => 2, Exp => 0);
+      Ada.Float_Text_IO.Put (Float (Elapsed), Fore => 3, Aft => 2, Exp => 0);
       Put_Line ("s                       ║");
       Put_Line ("╚════════════════════════════════════════╝");
    end Display_Result;
@@ -419,7 +419,7 @@ package body Nerdsafe_TUI is
                Result := Run_Validation (Quick, Limits);
                Display_Result (Result, 5.0);
             when '2' =>
-               Result := Run_Validation (Standard, Limits);
+               Result := Run_Validation (Normal, Limits);
                Display_Result (Result, 30.0);
             when '3' =>
                Result := Run_Validation (Thorough, Limits);
@@ -442,9 +442,9 @@ package body Nerdsafe_TUI is
       end loop;
    end Run_TUI;
 
-   -- =========================================================================
-   -- Utilities Implementation
-   -- =========================================================================
+   --  =========================================================================
+   --  Utilities Implementation
+   --  =========================================================================
 
    function Format_Memory (KB : Natural) return String is
       MB : constant Natural := KB / 1024;
