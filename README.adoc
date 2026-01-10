@@ -1,10 +1,13 @@
-// SPDX-License-Identifier: AGPL-3.0-or-later
+image:https://img.shields.io/badge/license-PMPL--1.0-blue.svg[License,link="https://github.com/hyperpolymath/palimpsest-license"]
+// SPDX-License-Identifier: PMPL-1.0
 = nerdsafe-restart: Pre-Reboot Validation for Paranoid Sysadmins
+
+
+
 :toc: macro
 :toclevels: 2
 :icons: font
 
-image:https://img.shields.io/badge/License-AGPL_3.0-blue.svg[AGPL-3.0,link="https://www.gnu.org/licenses/agpl-3.0"]
 image:https://img.shields.io/badge/Ada-2012-green.svg[Ada 2012]
 image:https://img.shields.io/badge/Philosophy-Palimpsest-purple.svg[Palimpsest,link="https://github.com/hyperpolymath/palimpsest-licence"]
 
@@ -238,7 +241,7 @@ Special support for immutable/atomic distributions:
 
 == License
 
-AGPL-3.0-or-later
+PMPL-1.0-or-later
 
 == Contributing
 
