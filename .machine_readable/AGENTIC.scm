@@ -1,4 +1,4 @@
-;; SPDX-License-Identifier: AGPL-3.0-or-later
+;; SPDX-License-Identifier: MPL-2.0-or-later
 ;; AGENTIC.scm - Agent interaction patterns for nerdsafe-restart
 ;; Media-Type: application/vnd.agentic+scm
 

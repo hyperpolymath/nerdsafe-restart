@@ -1,5 +1,5 @@
-image:https://img.shields.io/badge/license-PMPL--1.0-blue.svg[License,link="https://github.com/hyperpolymath/palimpsest-license"]
-// SPDX-License-Identifier: PMPL-1.0
+image:https://img.shields.io/badge/License-MPL_2.0-blue.svg[MPL-2.0-or-later,link="https://opensource.org/licenses/MPL-2.0"]
+// SPDX-License-Identifier: MPL-2.0-or-later
 = nerdsafe-restart: Pre-Reboot Validation for Paranoid Sysadmins
 
 
@@ -9,7 +9,13 @@ image:https://img.shields.io/badge/license-PMPL--1.0-blue.svg[License,link="http
 :icons: font
 
 image:https://img.shields.io/badge/Ada-2012-green.svg[Ada 2012]
-image:https://img.shields.io/badge/Philosophy-Palimpsest-purple.svg[Palimpsest,link="https://github.com/hyperpolymath/palimpsest-licence"]
+image:https://img.shields.io/badge/Philosophy-Palimpsest-indigo.svg[Palimpsest,link="https://github.com/hyperpolymath/palimpsest-license"]
+
+== License & Philosophy
+
+This project must declare **MPL-2.0-or-later** for platform/tooling compatibility.
+
+Philosophy: **Palimpsest**. The Palimpsest-MPL (PMPL) text is provided in `license/PMPL-1.0.txt`, and the canonical source is the palimpsest-license repository.
 
 toc::[]
 

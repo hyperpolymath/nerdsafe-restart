@@ -1,4 +1,4 @@
-;; SPDX-License-Identifier: AGPL-3.0-or-later
+;; SPDX-License-Identifier: MPL-2.0-or-later
 ;; guix-channels.scm - Guix channels for nerdsafe-restart environment
 ;;
 ;; This defines the Guix channels needed to reproduce the validation

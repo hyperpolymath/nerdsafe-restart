@@ -1,4 +1,4 @@
-;; SPDX-License-Identifier: AGPL-3.0-or-later
+;; SPDX-License-Identifier: MPL-2.0-or-later
 ;; guix-manifest.scm - Reproducible shell validation environment
 ;;
 ;; This manifest captures the environment needed for nerdsafe-restart

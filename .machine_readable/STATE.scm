@@ -1,4 +1,4 @@
-;; SPDX-License-Identifier: AGPL-3.0-or-later
+;; SPDX-License-Identifier: MPL-2.0-or-later
 ;; STATE.scm - Current project state for nerdsafe-restart
 ;; Media-Type: application/vnd.state+scm
 

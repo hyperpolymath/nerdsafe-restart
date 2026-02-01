@@ -1,4 +1,4 @@
-;; SPDX-License-Identifier: AGPL-3.0-or-later
+;; SPDX-License-Identifier: MPL-2.0-or-later
 ;; ECOSYSTEM.scm - Project ecosystem relationships
 ;; Media-Type: application/vnd.ecosystem+scm
 
@@ -29,11 +29,11 @@
     (repo "hyperpolymath/modshells")))
 
   (potential-consumer
-   (gitvisor
+   (git-hud
     (relationship "ci-integration")
     (description "Git repository management and automation")
     (integration "Could invoke nerdsafe-restart pre-commit")
-    (repo "hyperpolymath/gitvisor"))
+    (repo "hyperpolymath/git-hud"))
    (robot-repo-bot
     (relationship "automation-hook")
     (description "Repository maintenance automation")
